@@ -1,0 +1,77 @@
+*{
+    margin:0;
+    padding:0;
+}
+.Menubar{
+    height:0;
+}
+.nav-container{
+    /* margin: -2px; */
+    background-color: darkgray;
+    /* display: flex; */
+    padding: 45px;
+    height: 12vh;
+    /* width: 203vh */
+}
+.nav-title{
+    /* margin: auto; */
+    font-size: 61px;
+    height: 0px;
+}
+.nav-links{
+    margin-left: 1082px;
+    font-size: 37px;
+    /* height: 75px; */
+    margin-top: 13px;
+}
+.Home{
+
+    margin-left: -90px;
+    padding: 20px;
+
+}
+.About{
+    padding: 20px;
+
+}
+.Contact{
+    padding: 20px;
+
+}
+.content-part{
+    background-color:rgb(204, 79, 58);
+    height: 700px;
+
+}
+.col-md-12{
+    padding-top: 90px;
+}
+.content-title{
+    margin: 0;
+    font-size: 38px;
+    padding-left: 1vw;
+    padding-top: 8px;
+    padding-bottom: 12px;
+    border-radius: 516px;
+    border: red;
+    color: white;
+    background: black;
+    margin-left: 297px;
+    margin-right: 337px;
+
+}
+.content-text{
+    /* border: black;  */
+    margin: 0px;
+    margin-top: 52px;
+    margin-right: 227px;
+    margin-left: 206px;
+    padding-top: 8px;
+    background: white;
+    color: #56a104;
+    border-radius: 16px;
+    border-style: dashed;
+    border-width: 8px;
+    box-sizing: border-box;
+    height: 269px;
+}
