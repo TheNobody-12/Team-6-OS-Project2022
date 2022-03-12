@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>OS Virtual Laboratory</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <!-- <link href="assets/img/favicon.png" rel="icon">
+  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="style1.css" rel="stylesheet">
+</head>
+
+<body>
+  <!-- ======= Top Bar ======= -->
+  <section id="topbar" class="d-flex align-items-center">
+    <div class="container d-flex justify-content-center justify-content-md-between">
+      <div class="contact-info d-flex align-items-center">
+        <i class="bi bi-envelope-fill"></i><a href="ITAdmin@pdpu.ac.in">PDPU</a>
+        <i class="bi bi-phone-fill phone-icon"></i> +91 7923275300
+      </div>
+      <!--<div class="social-links d-none d-md-block">
+        <a href="#" class="twitter"><i class="bi bi-twitter"></i></a>
+        <a href="#" class="facebook"><i class="bi bi-facebook"></i></a>
+        <a href="#" class="instagram"><i class="bi bi-instagram"></i></a>
+        <a href="#" class="linkedin"><i class="bi bi-linkedin"></i></i></a>
+      </div> -->
+    </div>
+  </section>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="Home.html">OS Lab</a></h1>
+      <a href="Home.html" class="logo me-auto"><img src="PDEU New Logo.png" alt="" class="img-fluid"></a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="#hero">Home</a></li>
+          <li><a class="nav-link scrollto" href="#about">About</a></li>
+          <li><a class="nav-link scrollto" href="#team">Team</a></li>
+          <li class="dropdown"><a href="#Types"><span>Algorithms</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="webpage2.html" target="_blank">FCFS</a></li>
+              <li><a href="webpage3.html" target="_blank">SSTF</a></li>
+              <li><a href="webpage4.html" target="_blank">SCAN</a></li>
+              <li><a href="webpage5.html" target="_blank">LOOK</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+      <!-- .navbar -->
+
+    </div>
+  </header><!-- End Header -->
+  <section id="hero">
+    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+      <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+      <div class="carousel-inner" role="listbox">
+
+        <!-- Slide 1 -->
+        <div class="carousel-item active" style="background-image: url(yellowhome.png)">
+          <div class="carousel-container">
+            <div class="container">
+              <h2 class="animate__animated animate__fadeInDown">Welcome to <span>OS Virtual Lab</span></h2>
+              <p class="animate__animated animate__fadeInUp">Feel Free to look Around</p>
+              <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">About</a>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="carousel-item " style="background-image: url(homeimage.jpg)">
+          <div class="carousel-container">
+            <div class="container">
+              <h2 class="animate__animated animate__fadeInDown">Disk Scheduling Algoritms</h2>
+              <p class="animate__animated animate__fadeInUp">Disk scheduling is done by operating systems to schedule 
+                I/O requests arriving for the disk. Disk scheduling is also known as I/O scheduling.<br>Two or more 
+                request may be far from each other so can result in greater disk arm movement.</p>
+              <a href="#types-of-DS-Algo" class="btn-get-started animate__animated animate__fadeInUp scrollto">Read More</a>
+            </div>
+          </div>
+        </div>
+
+        <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+          <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+        </a>
+
+        <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+          <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section  -->
+
+  <!-- ======= About Us Section ======= -->
+  <section id="about" class="about">
+    <div class="container" data-aos="fade-up">
+
+      <div class="section-title">
+        <h2>About Disk scheduling Algorithms</h2>
+        <p>-Disk scheduling is done by operating systems to schedule I/O requests arriving for 
+          the disk. Disk scheduling is also known as I/O scheduling.<br>
+          -There are many Disk Scheduling Algorithms but before discussing 
+          them let’s have a quick look at some of the important terms:<br>
+          <b>Seek Time, Seek Time, Transfer Time, Disk Access Time, Disk Response Time.</b> 
+        </p>
+      </div>
+
+      <div class="row content">
+        <div class="col-lg-6">
+          <p>
+            Disk scheduling is important because:
+          </p>
+          <ul>
+            <li><i class="ri-check-double-line"></i>-Two or more request may be far from 
+                each other so can result in greater disk arm movement.</li>
+            <li><i class="ri-check-double-line"></i>-Hard drives are one of the slowest parts of the computer 
+                system and thus need to be accessed in an efficient manner.</li>
+            <li><i class="ri-check-double-line"></i>-Disk Scheduling Algorithms:<br><b>FCFS, SSTF, SCAN, LOOK etc.</b> </li>    
+          </ul>
+        </div>
+        <div class="col-lg-6 pt-4 pt-lg-0">
+          <p>
+            -Multiple I/O requests may arrive by different processes and 
+                only one I/O request can be served at a time by the disk controller.<br>
+                -Thus other I/O requests need to wait in the waiting queue and need to be scheduled.    
+          </p>
+          <a href="#types-of-DS-Algo" class="btn-learn-more">Learn More</a>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- End About Us Section -->
+  <br><br>
+  <main id="main">
+
+    <!-- ======= Icon Boxes Section ======= -->
+    <section id="breadcrumbs" class="breadcrumbs">
+      <div class="container">
+        <br>
+        <a name="types-of-DS-Algo"><h2 id="Types">Types Of Disk Scheduling Algoritms </h2><br>
+      </div>
+    </section>
+    <section id="icon-boxes" class="icon-boxes">
+      <div class="container">
+
+        <div class="row">
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up">
+            <div class="icon-box">
+              <!-- <div class="icon"><i class="bx bxl-dribbble"></i></div> -->
+              <h4 class="title"><a href="webpage2.html" target="_blank">FCFS Algo</a></h4>
+              <p class="description">First come first serve (FCFS) 
+                scheduling algorithm simply schedules the jobs according to their arrival time.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up"
+            data-aos-delay="100">
+            <div class="icon-box">
+              <!-- <div class="icon"><i class="bx bx-file"></i></div> -->
+              <h4 class="title"><a href="webpage3.html" target="_blank">SSTF Algo</a></h4>
+              <p class="description">Shortest seek time first (SSTF) algorithm selects the disk I/O request which
+                requires the least disk arm movement from its current position regardless 
+                of the direction.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up"
+            data-aos-delay="200">
+            <div class="icon-box">
+              <!-- <div class="icon"><i class="bx bx-tachometer"></i></div> -->
+              <h4 class="title"><a href="webpage4.html" target="_blank">SCAN Algo</a></h4>
+              <p class="description">In SCAN disk scheduling algorithm, head starts 
+                from one end of the disk and moves towards the other end, servicing requests 
+                in between one by one and reach the other end.</p>
+            </div>
+          </div>
+        </a>
+
+          <div class="col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0" data-aos="fade-up"
+            data-aos-delay="300">
+            <div class="icon-box">
+              <!-- <div class="icon"><i class="bx bx-layer"></i></div> -->
+              <h4 class="title"><a href="webpage5.html" target="_blank">LOOK Algo</a></h4>
+              <p class="description">LOOK is the advanced version of SCAN (elevator) disk 
+                scheduling algorithm which gives slightly better seek time than any 
+                other algorithm in the hierarchy.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- End Icon Boxes Section -->
+
+  </main><!-- End #main -->
+  <br><br>
+
+  <!-- ======= Breadcrumbs ======= -->
+  <section id="breadcrumbs" class="breadcrumbs">
+    <div class="container">
+
+      <br>
+      <h2>Our Team</h2>
+    </div>
+  </section>
+  <!--End Breadcrumbs -->
+
+  <!-- ======= Team Section ======= -->
+  <section id="team" class="team">
+    <div class="container">
+
+      <div class="row">
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+          <div class="member">
+            <img src="assets/img/team/team-4.jpeg" alt="">
+            <h4>Mr.Dharm Patel</h4>
+            <span>web designer</span>
+            <p>
+              "Code is Game, <br>Play and Improve."
+            </p>
+            <div class="social">
+              <a href=""><i class="bi bi-twitter"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href="https://instagram.com/d.m.patel_666?utm_medium=copy_link" target="_blank"><i class="bi bi-instagram"></i></a>
+              <a href="https://www.linkedin.com/in/d-m-the-actor-s-satge-404a6322b"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+          <div class="member">
+            <img src="assets/img/team/team-8.jpeg" alt="">
+            <h4>Mr.Sarthak Kapaliya</h4>
+            <span>web developer</span>
+            <p>
+              "Any fool can write code that a computer can understand.Good programmers write code that humans can understand."
+            </p>
+            <div class="social">
+              <a href="https://twitter.com/SarthakKapaliya?t=NFxwjUZSdC6BU3IU9vER2g&s=09"><i class="bi bi-twitter"></i></a>
+              <a href="https://www.facebook.com/sarthak.kapaliya.5"><i class="bi bi-facebook"></i></a>
+              <a href="https://www.instagram.com/invites/contact/?i=q4fvvffuzgc0&utm_content=g8q1tvc"><i class="bi bi-instagram"></i></a>
+              <a href="https://www.linkedin.com/in/sarthak-kapaliya-2723bb202"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+          <div class="member">
+            <img src="assets/img/team/team-6.jpeg" alt="">
+            <h4>Mr.Dhruvil Patel</h4>
+            <span>algorithm writter</span>
+            <p>
+              "Java is to JavaScript what car is to Carpet."
+            </p>
+            <div class="social">
+              <a href="https://twitter.com/Dhruvill04?t=b3ahWDZHitFq72JgWlZqDg&s=08"><i class="bi bi-twitter"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href="https://www.instagram.com/invites/contact/?i=1iabye8l3kcnw&utm_content=3esercu"><i class="bi bi-instagram"></i></a>
+              <a href="https://www.linkedin.com/in/dhruvil-patel-4528b41b1"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+          <div class="member">
+            <img src="assets/img/team/team-7.jpeg" alt="">
+            <h4>Mr.Jenish Aagja</h4>
+            <span>Chief algorithm designer</span>
+            <p>
+              "Sometimes it pays to stay in bed on Monday, 
+              rather than spending the rest of the week debugging Monday’s code."
+            </p>
+            <div class="social">
+              <a href="https://twitter.com/me_infinte?t=GxFdrRl7iYSEVMO0p3kqfw&s=09"><i class="bi bi-twitter"></i></a>
+              <a href="https://www.facebook.com/jenish53"><i class="bi bi-facebook"></i></a>
+              <a href="https://www.instagram.com/invites/contact/?i=626egmos8y4g&utm_content=f1t84mb"><i class="bi bi-instagram"></i></a>
+              <a href=""><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+          <div class="member">
+            <img src="assets/img/team/team-10.jpeg" alt="">
+            <h4>Mr.Aashish Ladhani</h4>
+            <span>Implementation designer</span>
+            <p>
+              "Code is like humor. When you have to explain it, it’s bad."
+            </p>
+            <div class="social">
+              <a href=""><i class="bi bi-twitter"></i></a>
+              <a href="https://www.facebook.com/ashish.ladhani.336"><i class="bi bi-facebook"></i></a>
+              <a href="https://www.instagram.com/alterednamae/"><i class="bi bi-instagram"></i></a>
+              <a href="https://www.linkedin.com/in/ashish-ladhani-9147a1221"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-lg-4 col-md-6 d-flex align-items-stretch">
+          <div class="member">
+            <img src="assets/img/team/team-9.jpeg" alt="">
+            <h4>Mr.Vivek Gupta</h4>
+            <span>CTO</span>
+            <p>
+              "First, solve the problem. Then, write the code."
+            </p>
+            <div class="social">
+              <a href="https://twitter.com/vivekgu23247136?t=yimMH2LZ6FEJT91BpWWPvQ&s=08"><i class="bi bi-twitter"></i></a>
+              <a href=""><i class="bi bi-facebook"></i></a>
+              <a href="https://instagram.com/vivek_gupta31?utm_medium=copy_link"><i class="bi bi-instagram"></i></a>
+              <a href="https://www.linkedin.com/in/vivek-gupta-8995581b4"><i class="bi bi-linkedin"></i></a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section><!-- End Team Section -->
+
+
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <br><h4>&emsp;&ensp;Useful Links</h4><br>
+            <ol>
+              <i class="bx"></i> <a href="#hero">Home</a><br><br>
+              <i class="bx"></i> <a href="#about">About us</a><br><br>
+              <i class="bx"></i> <a href="#team">Team</a><br><br>
+              <i class="bx"></i> <a href="#Types">Algorithms</a><br><br>
+              <!--<li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li> -->
+            </ol>
+          </div>
+          
+          <div class="col-lg-6 col-md-6 footer-info">
+            <br><br><br><br><h3>About OS Virtual Lab</h3>
+          </div>
+          
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <br><h4>Contact Us</h4><br>
+            <p>
+              Knowledge Corridor<br>
+              Raisan Village<br>
+              Gandhinagar - 382007<br><br>
+              <br><strong>Phone:</strong> +91 7923275300<br>
+              <strong>Email:</strong> <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=new" target="_blank">ITAdmin@pdpu.ac.in</a><br>
+            </p>
+
+          </div>
+          <!-- <p>This part of Oper</p> -->
+            <div class="social-links mt-3">
+              <a href="https://twitter.com/sotpdpu?t=gF7fEcV4X_oLUK5AaEEQVQ&s=09" target="_blank" class="twitter"><i class="bx bxl-twitter"></i></a>
+              <a href="https://www.facebook.com/SOT-pdpu-205008306201226/" target="_blank" class="facebook"><i class="bx bxl-facebook"></i></a>
+              <a href="https://www.instagram.com/pdeuofficial/?utm_medium=copy_link" target="_blank" class="instagram"><i class="bx bxl-instagram"></i></a>
+              <!-- <a href="#" target="_blank" class="google-plus"><i class="bx bxl-skype"></i></a> -->
+              <a href="https://www.linkedin.com/school/education-pdpu" target="_blank" class="linkedin"><i class="bx bxl-linkedin"></i></a>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </footer><!-- End Footer -->
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center">
+    <i class="bi bi-arrow-up-short"></i></a>
+
+  <!-- <div id="preloader"></div>
+  <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i
+      class="bi bi-arrow-up-short"></i></a> -->
+
+  <!--  Vendor JS Files -->
+  <script src="assets/vendor/purecounter/purecounter.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="assets/js/main.js"></script>
+</body>
+
+</html>

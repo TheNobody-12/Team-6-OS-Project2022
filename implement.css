@@ -1,0 +1,135 @@
+/* Style the video: 100% width and height to cover the entire window */
+#myVideo {
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    min-width: 100%;
+    min-height: 100%;
+  }
+  
+  /* Add some content at the bottom of the video/page */
+  .content {
+    position: fixed;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+    color: #f1f1f1;
+    width: 100%;
+    padding: 20px;
+  }
+  
+  /* Style the button used to pause/play the video */
+  #myBtn {
+    width: 200px;
+    font-size: 18px;
+    padding: 10px;
+    border: none;
+    background: #000;
+    color: #fff;
+    cursor: pointer;
+  }
+  
+  #myBtn:hover {
+    background: #ddd;
+    color: black;
+  }
+  
+/* Here is some other code */
+.contain {
+  position: relative;
+  border: 2px solid black;
+  margin: 170px 100px ;
+  padding: 5px 5px;
+  width: 35%;
+  border-radius: 20px;
+  height: 85vh;
+  font-size: 20px;
+  text-align: center;
+  z-index: 900;
+  display: flexbox;
+  flex-wrap: wrap;
+}
+.formgrp input{
+  padding: 3px 3px;
+  margin: 8px;
+}
+.formgrp2 button{
+  display: block;
+  align-self: center;
+}
+.contain2 {
+  
+  float: right;
+  border: 2px solid black;
+  margin: 0px 0px ;
+  padding: 5px 5px;
+  width: 100%;
+  border-radius: 20px;
+  height: 80vh;
+  font-size: 20px;
+  text-align: center;
+  position: absolute;
+  top: 0px;
+  left: 50vw;
+  
+}
+.contain :hover{
+  background-color: rgb(165, 241, 93);
+}
+.contain2 :hover{
+  background-color: rgb(107, 243, 114);
+}
+
+#Worstone {
+  padding: 1vw 1vw;
+  margin : 10px 10px;
+}
+
+.formgrp input :hover{
+  background-color: white;
+  
+}
+.formgrp  input[type=number]{
+  
+  width: 50%;
+}
+.formgrp  input[type=button]{
+  
+  width: 50%;
+}
+.formgrp2 button{
+  display: block-inline;
+  margin: 20px;
+  padding: 10px;
+}
+@media screen and (max-width: 600px) {
+  .col-25, .col-75, input[type=submit] {
+    width: 100%;
+    height: 100%;
+    margin-top: 0;
+    margin-bottom: 0;
+  }
+  .contain2{
+    top: 130vw;
+    left: 0%;
+  
+  }
+  .contain{
+    margin: 170px 100px;
+    width: 80%;
+  }
+}
+
+
+h2{
+  color: white;
+}
+.formgrp2 {
+  color: white;
+
+}
+.qq{
+  color: white;
+}
+h3{
+  color: white;
+}
