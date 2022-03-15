@@ -1,0 +1,108 @@
+nav {
+    background-color: white;
+  }
+  
+input[type='number']{
+    width:45px;
+    height: 25px;
+    margin-right:7px;
+    padding: 5px;
+    border-radius: 10px;
+    border: 2px solid grey;
+    box-shadow: 2px 2px var(--main-color);
+}
+input::-webkit-outer-spin-button,
+        input::-webkit-inner-spin-button {
+            -webkit-appearance: none;
+            margin: 0;
+        }
+        
+      /* .input-box{
+          
+          border: 2px solid grey;
+          border-radius: 10px;
+          box-shadow:2px 2px var(--main-color);
+      }   */
+
+      .block{
+          display: inline-block;
+          width: 150px;
+      }
+
+    #CLOOK{
+         padding-top:3rem;
+         padding-bottom: 0px;
+     }
+
+     .maincontainer-content{
+         margin-top: 0px;
+         padding-top: 0px;
+     }
+
+     #maincontent{
+        padding-left: 5vw;
+        padding-right: 5vw;
+     }
+     #heading-text{
+         margin-bottom: 1rem;
+     }
+     .block-2 img{
+         width: 70%;
+     }
+     .quote {
+        position: absolute;
+        top: 0;
+        left: 0;
+        color: var(--main-color);
+        opacity: 0.04;
+        font-size: 8rem;
+    }
+    .swiper-slide {
+        position: relative;
+        padding: 0rem 1.5rem;
+    }
+
+    .swiper-slide>p{
+        margin-top: 7px;
+    }
+        /* #CLOOKchart{
+            margin: 110px 0px;
+            transform: rotate(90deg);
+            max-width: 500px;
+            max-height: 500px;
+        } */
+
+       .toogle-class{
+           display: none;
+       }
+
+       .theory-heading,.algorithm-heading{
+        color: #ebc000;
+        font-size: 20px;
+        margin: 20px 0px;
+       }
+       .grid-2{
+           height: 100vh;
+       }
+
+      button {
+        color: #fff;
+        padding: 5px 10px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        position: relative;
+        display: inline-block;
+        outline: none;
+        border-radius: 10px;
+        border: none;
+        background-color: var(--main-color);
+        box-shadow: 2px 2px 4px #a2b9ff, -1px -1px 3px rgb(202, 190, 255);
+        font-weight: 500;
+        margin-top: 7px;
+        font-size: 12px;
+        height: 35px;
+        width: fit-content;
+      }
+      button:active {
+        box-shadow: inset 1px 1px 3px #c8d0e7, inset -1px -1px 3px rgba(255, 255, 255, 0.281);
+      }
