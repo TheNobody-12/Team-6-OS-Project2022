@@ -30,7 +30,7 @@ body {
     border-bottom: 2px solid black;
 }
 
-/* NAVIGATION BAR */
+/* NAVIGATION BAR
 
 
 .navbar {
@@ -118,7 +118,7 @@ body {
 
 /* COVER */
 
-.overlay {
+/* .overlay {
     position: absolute;
     top: 0;
     left: 0;
@@ -164,11 +164,11 @@ body {
     100% {
         transform: translateY(100%);
     }
-}
+} */ 
 
 /* ALGORITHMS BLOCK FOR HOME PAGE */
 
-.cards {
+/* .cards {
     position: relative;
     display: flex;
     flex-direction: row;
@@ -234,10 +234,10 @@ body {
     justify-content: center;
     align-items: center;
     margin-bottom: 10px;
-}
+} */
 
 /* DISK SCHEDULING INFORMATION */
-
+/* 
 .info-block {
     position: relative;
     display: flex;
@@ -270,11 +270,11 @@ body {
 
 .infocard:hover {
     transform: scale(1.02);
-}
+} */
 
 /* ABOUT BLOCK OF EACH ALGORITHM WEBPAGE */
 
-.mid-block {
+/* .mid-block {
     display:flex;
     flex-direction: column;
     justify-content: center;
@@ -362,9 +362,9 @@ body {
     width: 7px;
 }
 .card-body::-webkit-scrollbar-thumb{
-    background: #a8ff78;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #78ffd6, #a8ff78);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, hsl(162, 100%, 74%), #a8ff78); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    background: #a8ff78;  /* fallback for old browsers 
+    background: -webkit-linear-gradient(to right, #78ffd6, #a8ff78);  /* Chrome 10-25, Safari 5.1-6 
+    background: linear-gradient(to right, hsl(162, 100%, 74%), #a8ff78); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ 
     border: 1px solid white;
 }
 
@@ -397,7 +397,7 @@ body {
     #compare{
         width:initial;
     }
-}
+} */
 
 /* LAST SECTION */
 
