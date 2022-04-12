@@ -26,8 +26,8 @@ var fisrtTime = true;
 var algoChart = new Chart(ctx, {});
 var trackRequests;
 
-//FUNCITON THAT RETURNS THE SCAN ARRAY
-
+//FUNCITON THAT RETURNS THE LOOK ARRAY
+//time complexity of LOOK function => O(yrange)
 function look(trequests, headpos, direction, max){
     let tr = trequests; 
     var requestorder = [];
@@ -76,7 +76,8 @@ function look(trequests, headpos, direction, max){
 }
 
 // FUCNTION TO CALCULATE SEEK OPERATIONS
-
+// LOGIC TO FIND SEEK TIME
+//Time Complexity for function seekOperations will be O(requestorder.length)
 function seekOperations(requestorder, headpos){
     var seektime = 0 ;
     seektime += Math.abs(headpos - requestorder[0]);
@@ -85,7 +86,9 @@ function seekOperations(requestorder, headpos){
     }
     return seektime;
 }
-
+// *********************************************************
+//NEW FUNCTION TO BE ADDED IN OTHER JS FILES 
+//Time Complexity for function seekOperations will be O(requestorder.length)
 function seekOperationsCalculations(requestorder, headpos){
     var calc = '';
     for(let i=0; i<requestorder.length; i++){
@@ -98,33 +101,18 @@ function seekOperationsCalculations(requestorder, headpos){
     }
     return calc;
 }
-
+// FUNCTION EXECUTED ON RUN
 function execute() {
-
+// Part to be added in other js files 
+    
+    //----------------------------------------------------
     document.getElementById("alert-wrapper").innerHTML = ``;
     document.getElementById("chart-image").style.display = "flex";
     document.getElementById("chart-container").style.display = "none";
 
     let allOk = true;
     var str = '';
-    if (requests.value === '') {
-        str = 'Number of requests cannot be left blank!';
-        document.getElementById("alert-wrapper").innerHTML = `
-        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 15px;">
-            <strong>Warning!</strong> ${str}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>`;
-        allOk = false;
-    }
-    if (Number(requests.value) <= 0 && allOk) {
-        str = 'The number of request should be greater than 0!';
-        document.getElementById("alert-wrapper").innerHTML = `
-        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 15px;">
-            <strong>Warning!</strong> ${str}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>`;
-        allOk = false;
-    }
+    // Max Tracks cannot be left blank
     if (maxTrack.value === '' && allOk) {
         str = 'Maximum number of tracks cannot be left blank!';
         document.getElementById("alert-wrapper").innerHTML = `
@@ -134,6 +122,7 @@ function execute() {
         </div>`;
         allOk = false;
     }
+    //Max Tracks must be greater than zero
     if (Number(maxTrack.value) <= 0 && allOk) {
         str = 'Maximum number of tracks should be greater than 0!';
         document.getElementById("alert-wrapper").innerHTML = `
@@ -143,7 +132,8 @@ function execute() {
         </div>`;
         allOk = false;
     }
-    if (headPosition.value === '' && allOk) {
+    //Head Position cannot be left blank
+     if (headPosition.value === '' && allOk) {
         str = 'The starting head position needs to be mentioned! It cannot be left blank.'
         document.getElementById("alert-wrapper").innerHTML = `
         <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 15px;">
@@ -152,6 +142,7 @@ function execute() {
         </div>`;
         allOk = false;
     }
+     // The Starting Head Position must lie between zero to max tracks
     if ((Number(headPosition.value) < 0 || Number(headPosition.value) > Number(maxTrack.value)) && allOk) {
         str = 'The starting head position of must lie between 0 and maximum track number.';
         document.getElementById("alert-wrapper").innerHTML = `
@@ -181,16 +172,6 @@ function execute() {
             allOk = false;
         }
     });
-
-    if(trackRequests.length != Number(requests.value) && allOk){
-        str = 'Please make sure that the number of track requests in the array match the total number of requests.';
-        document.getElementById("alert-wrapper").innerHTML = `
-        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 15px;">
-            <strong>Warning!</strong> ${str}
-                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-        </div>`;
-        allOk = false;
-    }
 
     if (allOk) {
         run.classList.toggle("disabled");
@@ -358,9 +339,7 @@ function execute() {
                         pointHoverRadius: 6,
                         lineTension: 0.2,
                         data: []
-                    }
-                ]
-            },
+                    }]},
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -395,10 +374,7 @@ function execute() {
                                     rnumber,
                                     tnumber
                                 ]
-                            );
-                        }
-                    }
-                },
+                        );}}},
                 animation: {
                     easing: 'easeInQuad',
                 },
@@ -420,9 +396,7 @@ function execute() {
                                 max: yrange+1,
                                 min: 0,
                                 stepSize: 1,
-                            },
-                        }
-                    ],
+                            },}],
                     xAxes: [
                         {
                             scaleLabel: {
@@ -441,12 +415,7 @@ function execute() {
                             },
                             display: true,
                             position: 'top',
-                        }
-                    ]
-                }
-
-            }
-        });
+                        }]}}});
         
         function displaySeekOp(){
             let temp = document.getElementById('temp');
@@ -540,13 +509,8 @@ function execute() {
                     displaySeekOp();
                     done();
                 }, 1000
-                );
-            }
-        }
-    }
-}
+                );}}}}
 run.addEventListener("click", execute);
-
 window.addEventListener('wheel', (e) => {
     if (e.deltaY > 0) {
         document.getElementsByClassName('navbar')[0].classList.add('animate__slideOutUp');
@@ -554,8 +518,7 @@ window.addEventListener('wheel', (e) => {
             document.getElementsByClassName('navbar')[0].style.display = 'none';
 
             document.getElementsByClassName('navbar')[0].classList.remove('animate__slideOutUp');
-        }, 100);
-    }
+        }, 100);}
     else {
         if (document.getElementsByClassName('navbar')[0].style.display === 'none') {
             document.getElementsByClassName('navbar')[0].classList.add('animate__slideInDown');
@@ -564,8 +527,4 @@ window.addEventListener('wheel', (e) => {
             }, 50);
             setTimeout(() => {
                 document.getElementsByClassName('navbar')[0].classList.remove('animate__slideInDown');
-            }, 500);
-        }
-
-    }
-});
+            }, 500);}}});
