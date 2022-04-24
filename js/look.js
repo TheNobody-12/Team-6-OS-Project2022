@@ -463,13 +463,13 @@ function execute() {
             // NEW CODE TO BE ADDED IN OTHER JS FILES 
             var pdfButton = document.createElement("button");
             pdfButton.type = 'button'; pdfButton.className = 'pdfButton btn btn-outline-dark animate__animated animate__backInUp';
-            pdfButton.style.padding = '0'; pdfButton.id="genPDF"
+            pdfButton.style.padding = '0'; pdfButton.id = "genPDF"
             pdfButton.innerHTML = `
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16" style="margin: 6px;">
                 <path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"/>
                 <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
                 </svg>`;
-            document.getElementById('dPDFIcon').append(pdfButton);            
+            document.getElementById('dPDFIcon').append(pdfButton);
             setTimeout(() => {
                 window.scrollTo(0,document.body.scrollHeight);
             }, 700);
@@ -511,20 +511,3 @@ function execute() {
                 }, 1000
                 );}}}}
 run.addEventListener("click", execute);
-window.addEventListener('wheel', (e) => {
-    if (e.deltaY > 0) {
-        document.getElementsByClassName('navbar')[0].classList.add('animate__slideOutUp');
-        setTimeout(() => {
-            document.getElementsByClassName('navbar')[0].style.display = 'none';
-
-            document.getElementsByClassName('navbar')[0].classList.remove('animate__slideOutUp');
-        }, 100);}
-    else {
-        if (document.getElementsByClassName('navbar')[0].style.display === 'none') {
-            document.getElementsByClassName('navbar')[0].classList.add('animate__slideInDown');
-            setTimeout(() => {
-                document.getElementsByClassName('navbar')[0].style.display = 'block';
-            }, 50);
-            setTimeout(() => {
-                document.getElementsByClassName('navbar')[0].classList.remove('animate__slideInDown');
-            }, 500);}}});

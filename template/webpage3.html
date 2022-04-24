@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>OS Virtual Laboratory</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Google Fonts -->
+  <link
+    href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
+    rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="/css/style1.css" rel="stylesheet">
+  <title>Shortest Seek Time First Algo</title>
+</head>
+
+<body>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="d-flex align-items-center">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="/template/Home.html">OS Lab</a></h1>
+      <a href="/template/Home.html" class="logo me-auto"><img src="/PDEU New Logo.png" alt="" class="img-fluid"></a>
+
+      <nav id="navbar" class="navbar">
+        <ul>
+          <li><a class="nav-link scrollto active" href="/template/Home.html">Home</a></li>
+          <li><a class="nav-link scrollto" href="/template/sstf.html">Implementation</a></li>
+
+          <li class="dropdown"><a href="#Types"><span>Algorithms</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="/template/webpage2.html" >FCFS</a></li>
+              <li><a href="/template/webpage3.html" >SSTF</a></li>
+              <li><a href="/template/webpage4.html" >SCAN</a></li>
+              <li><a href="/template/webpage5.html" >LOOK</a></li>
+            </ul>
+          </li>
+        </ul>
+        <i class="bi bi-list mobile-nav-toggle"></i>
+      </nav>
+      <!-- .navbar -->
+    </div>
+  </header>
+  <section id="hero">
+    <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
+      <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
+      <div class="carousel-inner" role="listbox">
+        <!-- Slide 1 -->
+        <div class="carousel-item active" style="background-image: url(/pic-1.jpg)">
+          <div class="carousel-container">
+            <div class="container">
+              <h2 class="animate__animated animate__fadeInDown">What is SSTF Algorithm ?</h2>
+              <br>
+              <p class="animate__animated animate__fadeInDown">
+                Shortest seek time first (SSTF) algorithm selects the disk I/O request which
+                requires the least disk arm movement from its current position regardless
+                of the direction.<br>
+                It reduces the total seek time as compared to FCFS.<br>
+                It allows the head to move to the closest track in the service queue.
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 2 -->
+        <div class="carousel-item " style="background-image: url(/pic-2.jpg)">
+          <div class="carousel-container">
+            <div class="container">
+              <h2 class="animate_animated animate_fadeINDown">Example of SSTF Algorithm</h2>
+              <br>
+              <p class="animate_animated animate_fadeINUp">
+                Input:
+                <br>
+                Request sequence = {176, 79, 34, 60, 92, 11, 41, 114}
+                <br>
+                Initial head position = 50<br><br>
+                Output:
+                <br>
+                Therefore, total seek count is calculated as:
+                <br>
+                = (50-41)+(41-34)+(34-11)+(60-11)+(79-60)+(92-79)+(114-92)+(176-114)
+                <br>
+                = 204
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Slide 3 -->
+        <div class="carousel-item" style="background-image: url(/pic-3.jpg)">
+          <div class="carousel-container">
+            <div class="container">
+              <h2 class="animate_animated animate_fadeINDown">Advantages of SSTF Algo</h2>
+              <br>
+              <p class="animate_animated animate_fadeINUp"> Here, are pros of using SSTF scheduling algorithm:<br>
+              <ul style="color:aliceblue">
+                Better performance than FCFS scheduling algorithm. <br>
+                It provides better throughput.<br>
+                This algorithm is used in Batch Processing system
+                where throughput is more important. <br>
+                It has less average response and waiting time.<br>
+              </ul>
+              </p>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- slide 4 -->
+        <div class="carousel-item" style="background-image: url(/pic-4.jpg) ">
+          <div class="carousel-container">
+            <div class="container">
+              <h2 class="animate_animated animate__backInDown">Disadvantages of SSTF Algo</h2>
+              <p class="animate_animated animate_fadeINDown"> <br>
+                Here, are cons of using SSTF scheduling algorithm:<br>
+              <ul style="color:aliceblue">
+                Starvation is possible for some requests as it favours easy to
+                reach request and ignores the far away processes.<br>
+                Their is lack of predictability because of high variance of
+                response time.<br>
+                Switching direction slows things down.<br>
+              </ul>
+              </p>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <a class="carousel-control-prev" href="#heroCarousel" role="button" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon bi bi-chevron-left" aria-hidden="true"></span>
+    </a>
+
+    <a class="carousel-control-next" href="#heroCarousel" role="button" data-bs-slide="next">
+      <span class="carousel-control-next-icon bi bi-chevron-right" aria-hidden="true"></span>
+    </a>
+    </div>
+    </div>
+  </section>
+
+  <!-- <br><br> -->
+
+  <section id="button">
+    <div class="btn-container">
+      <button class="btn"><a href="/template/sstf.html">Implementation</a></button>
+    </div>
+  </section>
+  <!-- ======= Footer ======= -->
+  <footer id="footer">
+    <div class="footer-top">
+      <div class="container">
+        <div class="row">
+
+          <div class="col-lg-3 col-md-6 footer-links">
+            <br>
+            <h4>&emsp;&ensp;Useful Links</h4><br>
+            <ol>
+              <i class="bx"></i> <a href="#hero">Home</a><br><br>
+              <i class="bx"></i> <a href="#about">About us</a><br><br>
+              <i class="bx"></i> <a href="#team">Team</a><br><br>
+              <i class="bx"></i> <a href="#Types">Algorithms</a><br><br>
+            </ol>
+          </div>
+
+          <div class="col-lg-6 col-md-6 footer-info">
+            <br><br><br><br>
+            <h3>About OS Virtual Lab</h3>
+          </div>
+
+          <div class="col-lg-3 col-md-6 footer-contact">
+            <br>
+            <h4>Contact Us</h4><br>
+            <p>
+              Knowledge Corridor<br>
+              Raisan Village<br>
+              Gandhinagar - 382007<br><br>
+              <br><strong>Phone:</strong> +91 7923275300<br>
+              <strong>Email:</strong> <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#inbox?compose=new"
+                target="_blank">ITAdmin@pdpu.ac.in</a><br>
+            </p>
+
+          </div>
+          <!-- <p>This part of Oper</p> -->
+          <div class="social-links mt-3">
+            <a href="https://twitter.com/sotpdpu?t=gF7fEcV4X_oLUK5AaEEQVQ&s=09" target="_blank" class="twitter"><i
+                class="bx bxl-twitter"></i></a>
+            <a href="https://www.facebook.com/SOT-pdpu-205008306201226/" target="_blank" class="facebook"><i
+                class="bx bxl-facebook"></i></a>
+            <a href="https://www.instagram.com/pdeuofficial/?utm_medium=copy_link" target="_blank" class="instagram"><i
+                class="bx bxl-instagram"></i></a>
+            <!-- <a href="#" target="_blank" class="google-plus"><i class="bx bxl-skype"></i></a> -->
+            <a href="https://www.linkedin.com/school/education-pdpu" target="_blank" class="linkedin"><i
+                class="bx bxl-linkedin"></i></a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    </div>
+  </footer><!-- End Footer -->
+  <!--  Vendor JS Files -->
+  <script src="/assets/vendor/purecounter/purecounter.js"></script>
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="/assets/vendor/php-email-form/validate.js"></script>
+
+  <!-- Template Main JS File -->
+  <script src="/assets/js/main.js"></script>
+</body>
+
+</html>

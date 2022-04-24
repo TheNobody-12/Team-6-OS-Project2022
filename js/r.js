@@ -1,12 +1,6 @@
-// ADD SEEKOPERATIONSCALCULATIONS FUNTION
-// COPY ENTIRE DISPLAYSEEKOP AND DONE FUNCTIUONS
-// CHANGE THE THREE LINES OF CODE BEFORE THE DONE FUNCTION IN EACH JS FILE OF ALGORITHMS
-
-// ------------------------------------------------------------------------
-
 var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
 var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
-    return new bootstrap.Popover(popoverTriggerEl);
+    return new bootstrap.Popover(popoverTriggerEl)
 });
 
 var alertList = document.querySelectorAll('.alert')
@@ -14,13 +8,11 @@ alertList.forEach(function (alert) {
     new bootstrap.Alert(alert)
 });
 
-// ------------------------------------------------------------------------
-
 // GETTING ALL VARIABLES AND INPUTS
 
 document.getElementById("chart-image").classList.toggle("show-element");
 var ctx = document.getElementById("chart").getContext("2d");
-var requests = document.getElementById("requests");  // these is the input values of the no. of request
+var requests = document.getElementById("requests");
 var maxTrack = document.getElementById("max-track");
 var headPosition = document.getElementById("head");
 var tracks = document.getElementById("tracks");
@@ -30,29 +22,49 @@ var yrange = 0, head = 0, xrange = 0;
 var xlabel = [], ylabel = [];
 var fisrtTime = true;
 var algoChart = new Chart(ctx, {});
-var trackRequests; 
+var trackRequests;
+
+// FUNCTION THAT RETURNS THE SSTF ARRAY
+
+function sstf(trequests, headpos, n){
+    var tr = trequests;
+    var a=0; var requestorder = [];
+    while(n != 0 ){
+        var tr1=[];
+        for(var i=0;i<n;i++){
+            tr1[i]= Math.abs(tr[i]-headpos);
+        }
+        var min = Math.min(...tr1);
+        var index= tr1.indexOf(min);
+        headpos=tr[index];
+        requestorder[a++]=tr[index];
+        tr.splice(index,1);
+        n--;
+    }
+    console.log(requestorder);
+    return requestorder;
+}
+
 
 // FUCNTION TO CALCULATE SEEK OPERATIONS
-// Logic to find Seek time  
-// we use head pos
-function seekOperations(requestorder, headpos) {
-    var seektime = 0;
-    seektime += Math.abs(headpos - requestorder[0]); // first seek time
-    for (var i = 0; i < requestorder.length - 1; i++) {
-        seektime += Math.abs(requestorder[i + 1] - requestorder[i]); // seek time for all other requests 
+
+function seekOperations(requestorder, headpos){
+    var seektime = 0 ;
+    seektime += Math.abs(headpos - requestorder[0]);
+    for(var i=0;i<requestorder.length-1;i++){
+        seektime += Math.abs(requestorder[i+1] - requestorder[i]);  
     }
-    return seektime; 
+    return seektime;
 }
-// *****************************************
-// NEW FUNCTION TO BE ADDED IN OTHER JS FILES
-function seekOperationsCalculations(requestorder, headpos) {
+
+function seekOperationsCalculations(requestorder, headpos){
     var calc = '';
-    for (let i = 0; i < requestorder.length; i++) {
-        if (i === 0) {
-            calc += '|' + headpos + '-' + requestorder[i] + '|';
+    for(let i=0; i<requestorder.length; i++){
+        if(i===0){
+            calc += '|'+headpos+'-'+requestorder[i]+'|';
         }
-        else {
-            calc += ' + ' + '|' + requestorder[i - 1] + '-' + requestorder[i] + '|';
+        else{
+            calc += ' + '+'|'+requestorder[i-1]+'-'+requestorder[i]+'|';
         }
     }
     return calc;
@@ -62,9 +74,6 @@ function seekOperationsCalculations(requestorder, headpos) {
 
 function execute() {
 
-    // Part to be added to other js files 
-
-    // ------------------------------------------------------------------------
     document.getElementById("alert-wrapper").innerHTML = ``;
     document.getElementById("chart-image").style.display = "flex";
     document.getElementById("chart-container").style.display = "none";
@@ -133,7 +142,7 @@ function execute() {
     else {
         trackRequests = (tracks.value.split(',')).map(Number);
     }
-
+    
     trackRequests.forEach((x) => {
         if (x < 0 || x > Number(maxTrack.value) && allOk) {
             str = 'All the track requests must lie between 0 and maximum track number.';
@@ -146,7 +155,7 @@ function execute() {
         }
     });
 
-    if (trackRequests.length != Number(requests.value) && allOk) {
+    if(trackRequests.length != Number(requests.value) && allOk){
         str = 'Please make sure that the number of track requests in the array match the total number of requests.';
         document.getElementById("alert-wrapper").innerHTML = `
         <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 15px;">
@@ -156,21 +165,38 @@ function execute() {
         allOk = false;
     }
 
-    // ------------------------------------------------------------------------
-
-    algoChart.destroy();
     if (allOk) {
         run.classList.toggle("disabled");
 
-        yrange = Number(requests.value); head = Number(headPosition.value);
-        xrange = Number(maxTrack.value);
+        //TO DISPLAY THE DOWNLOAD BUTTON ON WEBPAGE AFTER THE RUN BUTTON IS CLICKED
+        // if(!fisrtTime){
+        //     var downloadButton = document.createElement("a");
+        //     downloadButton.id = "url"; downloadButton.download="SSTF.jpeg"; 
+        //     downloadButton.className="btn btn-dark last_button"; downloadButton.style.margin = "20px";
+        //     var text = document.createTextNode("Download");
+        //     downloadButton.append(text);
+        //     var controls = document.getElementById("controls"); controls.append(downloadButton);
+        //     fisrtTime = true;
+        // }
 
-        if (trackRequests[0] === head) {
-            trackRequests.splice(0, 1);
+        head = Number(headPosition.value);
+        xrange = Number(maxTrack.value);
+        
+        // CALLING THE REQUIRED FUNCTION FOR GETTING THE FINAL ARRAY
+        trackRequests = [...new Set(trackRequests)];
+        yrange = Number(trackRequests.length);
+        if(trackRequests.indexOf(head)!==-1){
+            trackRequests.splice(trackRequests.indexOf(head),1);
             yrange--;
         }
+        trackRequests = sstf(trackRequests, head, yrange);
+        yrange = Number(trackRequests.length);
+        
         for (var i = 0; i <= xrange; i++) {
             xlabel[i] = i;
+        }
+        for (i = 0; i <= yrange; i++) {
+            ylabel[i] = i;
         }
 
         // FOR HIDING THE IMAGE AND DISPLAYING THE IMAGE
@@ -180,18 +206,14 @@ function execute() {
         // FOR PROGRESS BAR
         document.getElementById('seek').style.width = '100%';
         var progressWrapper = document.getElementById("seek");
-        progressWrapper.innerHTML =
+        progressWrapper.innerHTML = 
             `<div id="progressBarContainer" class="progress animate__animated animate__backInUp">
                 <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
             </div>`;
-// ********************************************************************************************
-        // MODIFIED CODE (CHANGE REQUIRED IN OTHER JS AS WELL)
+        
         document.getElementById("dImageIcon").innerHTML = `<a id="url"></a>`;
-        document.getElementById("dPDFIcon").innerHTML = `<a id="genPDF"></a>`;
+        document.getElementById("dPDFIcon").innerHTML = `<a id="genPDF"></a>`; 
         document.getElementById("download-buttons").style.display = 'none';
-
-        var progressBar = document.getElementById("progressBar");
-        var progressBarContainer = document.getElementById("progressBarContainer");
 
         // FOR DOWNLOAD BUTTON
         function done() {
@@ -206,7 +228,7 @@ function execute() {
             // CONVERTING BASE64 URL TO DATAURL FOR PDF
             var imgw, imgh;
             var imgurl = new Image();
-            imgurl.onload = function () {
+            imgurl.onload = function(){
                 imgw = imgurl.width;
                 imgh = imgurl.height;
                 var canvas = document.createElement("canvas");
@@ -214,13 +236,13 @@ function execute() {
                 canvas.height = imgh;
 
                 var ctx2 = canvas.getContext("2d");
-                ctx2.fillStyle = "#FFFFFF";
+                ctx2.fillStyle="#FFFFFF";
                 ctx2.fillRect(0, 0, canvas.width, canvas.height);
                 ctx2.drawImage(this, 0, 0, imgw, imgh);
                 ImageURL = canvas.toDataURL("image/png", 1);
             }
             imgurl.src = url;
-            // ********************************************************************************************
+
             // NEW CODE TO BE ADDED IN OTHER JS FILES 
             var genPDF = document.getElementById("genPDF");
             genPDF.addEventListener('click', () => {
@@ -229,17 +251,17 @@ function execute() {
                 doc.setFont('times', 'bold', '100');
 
 
-                doc.text("FCFS Algorithm", (doc.internal.pageSize.width / 2), 18, 'center');
-                doc.line(0, 30, doc.internal.pageSize.width, 30, 'S');
+                doc.text("SSTF Algorithm", (doc.internal.pageSize.width/2), 18, 'center');
+                doc.line(0,30,doc.internal.pageSize.width,30,'S');
 
                 // GIVEN INFORMATION
                 doc.setFontSize(14);
                 doc.text('Given Information', 10, 40);
                 doc.setFontSize(12);
                 doc.setFont('times', 'normal', 'normal');
-                doc.text('Number of track requests: ' + requests.value, 20, 50);
-                doc.text('Total number of tracks: ' + maxTrack.value, 20, 58);
-                doc.text('Initial head position: ' + headPosition.value, 20, 66);
+                doc.text('Number of track requests: '+ requests.value, 20, 50);
+                doc.text('Total number of tracks: '+ maxTrack.value, 20, 58);
+                doc.text('Initial head position: '+ headPosition.value, 20, 66);
                 var tReq;
                 if ((tracks.value.split('')).indexOf(',') === -1) {
                     tReq = (tracks.value.split(' ')).map(Number);
@@ -248,29 +270,28 @@ function execute() {
                     tReq = (tracks.value.split(',')).map(Number);
                 }
 
-                doc.text('Track requests: ' + tReq.join(', '), 20, 74);
-                tReq = '';
-                for (let i = 0; i < trackRequests.length; i++) {
-                    if (i === 0) {
+                doc.text('Track requests: '+ tReq.join(', '), 20, 74);
+                tReq='';
+                for(let i=0; i<trackRequests.length; i++){
+                    if(i===0){
                         tReq += String(trackRequests[i]);
                     }
-                    else {
-                        tReq += ', ' + String(trackRequests[i]);
+                    else{
+                        tReq += ', '+String(trackRequests[i]);
                     }
                 }
-                doc.setFont('times', 'bold', '100');
-                doc.text('Order in which tracks are serviced: ' + tReq, 20, 82);
+                doc.setFont('Times', 'bold');
+                doc.text('Order in which tracks are serviced: '+ tReq, 20, 82);
 
                 // SEEK OPERATIONS
                 doc.setFontSize(14);
                 doc.text('Calculation of seek operations', 10, 97);
                 doc.setFontSize(12);
                 doc.setFont("Times", "Roman");
-                var seekCalc = 'Total Seek Operations = ' + seekOperationsCalculations(trackRequests, head);
+                var seekCalc = 'Total Seek Operations = '+seekOperationsCalculations(trackRequests, head);
                 var calc = doc.splitTextToSize(seekCalc, 180);
-                doc.text(calc, 20, 107);
-                doc.setFont("Times", "bold");
-                // ChangeCommit
+                doc.text(calc,20,107);
+                doc.setFont("Times","bold");
                 doc.text('Thus, total seek time = ' + String(seekOperations(trackRequests, head))+'ms (Considering successive track seek time as 1ms)', 20, 121);
                 var seekTime = 'Average Seek Time = '+String(Math.round((xrange/3)*100)/100)+'ms (Time taken by the header to move across one third of total tracks)';
                 seekTime = doc.splitTextToSize(seekTime, 180);
@@ -296,14 +317,15 @@ function execute() {
                 else {
                     doc.addImage(ImageURL, 'PNG', 7, 158, (imgw) - 10, (imgh));
                 }
-
+                
                 // FINALLY SAVING THE PDF 
-                doc.save('FCFS.pdf');
+                doc.save('SSTF.pdf');
             });
         }
 
-        // THE CHART ITSELF
 
+        // THE CHART ITSELF
+        algoChart.destroy();
         algoChart = new Chart(ctx, {
             type: 'line',
             data: {
@@ -333,25 +355,25 @@ function execute() {
                     fontFamily: 'Roboto Slab',
                     fontSize: 30,
                     fontColor: 'black',
-                    text: 'FCFS Graph'
+                    text: 'SSTF Graph'
                 },
-                hover: {
+                hover:{
                     mode: 'index',
                     axis: 'x',
                 },
                 legend: {
-                    display: false
+                    display: false,
                 },
                 tooltips: {
                     callbacks: {
 
-                        title: function (tooltipItem, data) {
-                            return 'FCFS';
+                        title: function(tooltipItem, data){
+                            return 'SSTF';
                         },
-                        label: function (tooltipItem, data) {
+                        label: function(tooltipItem, data) {
                             return 'Properties';
-                        },
-                        afterLabel: function (tooltipItem, data) {
+                        }, 
+                        afterLabel: function(tooltipItem, data) {
                             let rnumber = 'Request: ' + tooltipItem.yLabel;
                             let tnumber = 'Track: ' + data.datasets[tooltipItem.datasetIndex].data[Number(tooltipItem.yLabel)].x;
                             return (
@@ -364,7 +386,7 @@ function execute() {
                     }
                 },
                 animation: {
-                    easing: 'easeInQuad'
+                    easing: 'easeInQuad',
                 },
                 scales: {
                     yAxes: [
@@ -381,7 +403,7 @@ function execute() {
                             position: 'top',
                             ticks: {
                                 reverse: true,
-                                max: yrange + 1,
+                                max: yrange+1,
                                 min: 0,
                                 stepSize: 1,
                             },
@@ -411,9 +433,9 @@ function execute() {
 
             }
         });
-
-        function displaySeekOp() { //ChangeCommit
-            let temp = document.getElementById('temp');  
+        
+        function displaySeekOp(){
+            let temp = document.getElementById('temp');
             let temp1 = document.getElementById('temp1');
             temp.remove(); temp1.remove();
 
@@ -442,7 +464,7 @@ function execute() {
             document.getElementById('seek').append(seekOp2);
 
             var dIcon = document.createElement("a");
-            dIcon.id = 'url'; dIcon.download = "FCFS.jpeg";
+            dIcon.id = 'url'; dIcon.download = "SSTF.jpeg";
             var dButton = document.createElement("button");
             dButton.type = 'button'; dButton.className = 'dButton btn btn-outline-dark animate__animated animate__backInUp';
             dButton.style.padding = '0';
@@ -454,20 +476,22 @@ function execute() {
 
             dIcon.append(dButton);
             document.getElementById('dImageIcon').append(dIcon);
-
+            
+            // NEW CODE TO BE ADDED IN OTHER JS FILES 
             var pdfButton = document.createElement("button");
             pdfButton.type = 'button'; pdfButton.className = 'pdfButton btn btn-outline-dark animate__animated animate__backInUp';
-            pdfButton.style.padding = '0'; pdfButton.id = "genPDF"
+            pdfButton.style.padding = '0'; pdfButton.id="genPDF"
             pdfButton.innerHTML = `
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16" style="margin: 6px;">
                 <path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"/>
                 <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
                 </svg>`;
-            document.getElementById('dPDFIcon').append(pdfButton);
+            document.getElementById('dPDFIcon').append(pdfButton);            
             setTimeout(() => {
                 window.scrollTo(0,document.body.scrollHeight);
             }, 700);
         }
+
 
         // UPDATING THE CHART
         var start = {
@@ -478,27 +502,27 @@ function execute() {
         algoChart.update();
 
         var a = 0;
-        var incrementValue = 100 / yrange, counter = 0;
+        var incrementValue = 100/yrange, counter=0;
         var updatingData = setInterval(pushData, 700);
-        function pushData() {
-            if (a < yrange) {
+        function pushData(){
+            if(a<yrange){
                 var obj = {
                     x: trackRequests[a],
                     y: a + 1
                 };
                 algoChart.data.datasets[0].data.push(obj);
                 algoChart.update();
-                a = a + 1;
+                a = a+1;
 
-                counter += incrementValue;
-                progressBar.style.width = counter + "%"
+                counter+=incrementValue;
+                progressBar.style.width = counter+"%"
             }
-            else {
+            else{
                 clearInterval(updatingData);
                 progressBarContainer.classList.toggle("animate__backOutDown");
                 setTimeout(function () {
                     progressBarContainer.style.display = "none";
-                    progressWrapper.innerHTML = `<h4 id="temp"> </h4> <h4 id="temp1"> </h4>`; //ChangeCommit
+                    progressWrapper.innerHTML = `<h4 id="temp"> </h4> <h4 id="temp1"> </h4>`;
                     run.classList.toggle("disabled");
                     displaySeekOp();
                     done();
@@ -510,3 +534,25 @@ function execute() {
 }
 run.addEventListener("click", execute);
 
+window.addEventListener('wheel', (e) => {
+    if (e.deltaY > 0) {
+        document.getElementsByClassName('navbar')[0].classList.add('animate__slideOutUp');
+        setTimeout(() => {
+            document.getElementsByClassName('navbar')[0].style.display = 'none';
+
+            document.getElementsByClassName('navbar')[0].classList.remove('animate__slideOutUp');
+        }, 100);
+    }
+    else {
+        if (document.getElementsByClassName('navbar')[0].style.display === 'none') {
+            document.getElementsByClassName('navbar')[0].classList.add('animate__slideInDown');
+            setTimeout(() => {
+                document.getElementsByClassName('navbar')[0].style.display = 'block';
+            }, 50);
+            setTimeout(() => {
+                document.getElementsByClassName('navbar')[0].classList.remove('animate__slideInDown');
+            }, 500);
+        }
+
+    }
+});

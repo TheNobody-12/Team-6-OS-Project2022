@@ -8,27 +8,21 @@
   <title>OS Virtual Laboratory</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
-
-  <!-- Favicons -->
-  <!-- <link href="assets/img/favicon.png" rel="icon">
-  <link href="assets/img/apple-touch-icon.png" rel="apple-touch-icon"> -->
-
   <!-- Google Fonts -->
   <link
     href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i"
     rel="stylesheet">
-
   <!-- Vendor CSS Files -->
-  <link href="assets/vendor/animate.css/animate.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-  <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
-  <link href="assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
-  <link href="assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
-  <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
+  <link href="/assets/vendor/animate.css/animate.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+  <link href="/assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet">
+  <link href="/assets/vendor/boxicons/css/boxicons.min.css" rel="stylesheet">
+  <link href="/assets/vendor/glightbox/css/glightbox.min.css" rel="stylesheet">
+  <link href="/assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
 
   <!-- Template Main CSS File -->
-  <link href="style1.css" rel="stylesheet">
-  <title>First Come First Serve Algo</title>
+  <link href="/css/style1.css" rel="stylesheet">
+  <title>SCAN Algo</title>
 </head>
 
 <body>
@@ -37,22 +31,20 @@
   <header id="header" class="d-flex align-items-center">
     <div class="container d-flex align-items-center">
 
-      <h1 class="logo me-auto"><a href="Home.html">OS Lab</a></h1>
-      <a href="Home.html" class="logo me-auto"><img src="PDEU New Logo.png" alt="" class="img-fluid"></a>
+      <h1 class="logo me-auto"><a href="/template/Home.html">OS Lab</a></h1>
+      <a href="/template/Home.html" class="logo me-auto"><img src="/PDEU New Logo.png" alt="" class="img-fluid"></a>
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a class="nav-link scrollto active" href="Home.html">Home</a></li>
-          <!-- <li><a class="nav-link scrollto" href="#about">About</a></li>
-          <li><a class="nav-link scrollto" href="#team">Team</a></li> -->
-          <li><a class="nav-link scrollto" href="implement.html">Implementation</a></li>
+          <li><a class="nav-link scrollto active" href="/template/Home.html">Home</a></li>
+          <li><a class="nav-link scrollto" href="/template/scan.html">Implementation</a></li>
 
           <li class="dropdown"><a href="#Types"><span>Algorithms</span> <i class="bi bi-chevron-down"></i></a>
             <ul>
-              <li><a href="webpage2.html" target="_blank">FCFS</a></li>
-              <li><a href="webpage3.html" target="_blank">SSTF</a></li>
-              <li><a href="webpage4.html" target="_blank">SCAN</a></li>
-              <li><a href="webpage5.html" target="_blank">LOOK</a></li>
+              <li><a href="/template/webpage2.html">FCFS</a></li>
+              <li><a href="/template/webpage3.html">SSFT</a></li>
+              <li><a href="/template/webpage4.html">SCAN</a></li>
+              <li><a href="/template/webpage5.html">LOOK</a></li>
             </ul>
           </li>
         </ul>
@@ -62,67 +54,63 @@
     </div>
   </header>
   <section id="hero">
-    <!-- <div class="container">/ -->
-    <!-- <section id="hero"> -->
     <div id="heroCarousel" data-bs-interval="5000" class="carousel slide carousel-fade" data-bs-ride="carousel">
       <ol class="carousel-indicators" id="hero-carousel-indicators"></ol>
       <div class="carousel-inner" role="listbox">
 
         <!-- Slide 1 -->
-        <div class="carousel-item active" style="background-image: url(pic-1.jpg)">
+        <div class="carousel-item active" style="background-image: url(/pic-1.jpg)">
           <div class="carousel-container">
             <div class="container">
-              <!-- <h2 class="animate__animated animate__fadeInDown">Welcome to <span>OS Virtual Lab</span></h2>
-                    <p class="animate__animated animate__fadeInUp">Feel Free to look Around</p> -->
-              <h2 class="animate__animated animate__fadeInDown">What is SSTF Algorithm ?</h2>
+              <h2 class="animate__animated animate__fadeInDown">What is SCAN Algorithm ?</h2>
               <br>
               <p class="animate__animated animate__fadeInDown">
-                Shortest seek time first (SSTF) algorithm selects the disk I/O request which
-                requires the least disk arm movement from its current position regardless
-                of the direction.<br>
-                It reduces the total seek time as compared to FCFS.<br>
-                It allows the head to move to the closest track in the service queue.
+                The SCAN disk scheduling algorithm is another type of disk scheduling algorithm.<br>
+                In this algorithm, we move the disk arm into a specific direction<br>
+                Each request is addressed that comes in its path, and when
+                it comes into the end of the disk, then the disk arm will move reverse, and all the requests are
+                addressed that are arriving in its path.<br>
+                Scan disk scheduling algorithm is also called an elevator
+                algorithm because its working is like an elevator.
               </p>
-              <!-- <a href="#about" class="btn-get-started animate__animated animate__fadeInUp scrollto">About</a> -->
             </div>
           </div>
         </div>
         <!-- Slide 2 -->
-        <div class="carousel-item " style="background-image: url(pic-2.jpg)">
+        <div class="carousel-item " style="background-image: url(/pic-2.jpg)">
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animate_animated animate_fadeINDown">Example of SSTF Algorithm</h2>
+              <h2 class="animate_animated animate_fadeINDown">Example of SCAN Algorithm</h2>
               <br>
               <p class="animate_animated animate_fadeINUp">
                 Input:
                 <br>
                 Request sequence = {176, 79, 34, 60, 92, 11, 41, 114}
                 <br>
-                Initial head position = 50<br><br>
-                Output:
+                Initial head position = 50<br>
+                Direction = left (We are moving from right to left)<br><br>
+                Output: 
                 <br>
-                Therefore, total seek count is calculated as:
+                Total number of seek operations:<br>
+                = (50-41)+(41-34)+(34-11)+(11-0)+(60-0)+(79-60)
+                +(92-79)+(114-92)+(176-114)= 226
                 <br>
-                = (50-41)+(41-34)+(34-11)+(60-11)+(79-60)+(92-79)+(114-92)+(176-114)
-                <br>
-                = 204
+                Seek Sequence is: 41, 34, 11, 0, 60, 79, 92, 114, 176
               </p>
             </div>
           </div>
         </div>
         <!-- Slide 3 -->
-        <div class="carousel-item" style="background-image: url(pic-3.jpg)">
+        <div class="carousel-item" style="background-image: url(/pic-3.jpg)">
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animate_animated animate_fadeINDown">Advantages of SSTF Algo</h2>
+              <h2 class="animate_animated animate_fadeINDown">Advantages of SCAN Algo</h2>
               <br>
-              <p class="animate_animated animate_fadeINUp"> Here, are pros of using SSTF scheduling algorithm:<br>
+              <p class="animate_animated animate_fadeINUp"> Here, are pros of using SCAN scheduling algorithm:<br>
               <ul style="color:aliceblue">
-                Better performance than FCFS scheduling algorithm. <br>
-                It provides better throughput.<br>
-                This algorithm is used in Batch Processing system
-                where throughput is more important. <br>
-                It has less average response and waiting time.<br>
+                This algorithm is simple and easy to understand.<br>
+                SCAN algorithm have no starvation.<br>
+                This algorithm is better than FCFS Scheduling algorithm .<br>
               </ul>
               </p>
             </div>
@@ -131,18 +119,20 @@
         </div>
 
         <!-- slide 4 -->
-        <div class="carousel-item" style="background-image: url(pic-4.jpg) ">
+        <div class="carousel-item" style="background-image: url(/pic-4.jpg) ">
           <div class="carousel-container">
             <div class="container">
-              <h2 class="animate_animated animate__backInDown">Disadvantages of SSTF Algo</h2>
+              <h2 class="animate_animated animate__backInDown">Disadvantages of SCAN Algo</h2>
               <p class="animate_animated animate_fadeINDown"> <br>
-                Here, are cons of using SSTF scheduling algorithm:<br>
+                Here, are cons of using SCAN scheduling algorithm:<br>
               <ul style="color:aliceblue">
-                Starvation is possible for some requests as it favours easy to
-                reach request and ignores the far away processes.<br>
-                Their is lack of predictability because of high variance of
-                response time.<br>
-                Switching direction slows things down.<br>
+                More complex algorithm to implement.<br>
+                This algorithm is not fair because it cause long
+                waiting time for the cylinders just visited by the head.<br>
+                It causes the head to move till the end of the disk in
+                this way the requests arriving ahead of the arm position would
+                get immediate service but some other requests that arrive behind
+                the arm position will have to wait for the request to complete.<br>
               </ul>
               </p>
             </div>
@@ -164,16 +154,12 @@
     </div>
   </section>
 
-  <!-- <br><br> -->
 
   <section id="button">
     <div class="btn-container">
-      <!-- <img src="img_lights.jpg" alt="Snow" style="width:100%"> -->
-      <button class="btn"><a href="sstf.html">Implementation</a></button>
+      <button class="btn"><a href="/template/scan.html">Implementation</a></button>
     </div>
   </section>
-
-  <!-- <br><br><br><br><br><br><br><br><br>  -->
   <!-- ======= Footer ======= -->
   <footer id="footer">
     <div class="footer-top">
@@ -188,7 +174,6 @@
               <i class="bx"></i> <a href="#about">About us</a><br><br>
               <i class="bx"></i> <a href="#team">Team</a><br><br>
               <i class="bx"></i> <a href="#Types">Algorithms</a><br><br>
-              <!--<li><i class="bx bx-chevron-right"></i> <a href="#">Privacy policy</a></li> -->
             </ol>
           </div>
 
@@ -210,7 +195,6 @@
             </p>
 
           </div>
-          <!-- <p>This part of Oper</p> -->
           <div class="social-links mt-3">
             <a href="https://twitter.com/sotpdpu?t=gF7fEcV4X_oLUK5AaEEQVQ&s=09" target="_blank" class="twitter"><i
                 class="bx bxl-twitter"></i></a>
@@ -218,7 +202,6 @@
                 class="bx bxl-facebook"></i></a>
             <a href="https://www.instagram.com/pdeuofficial/?utm_medium=copy_link" target="_blank" class="instagram"><i
                 class="bx bxl-instagram"></i></a>
-            <!-- <a href="#" target="_blank" class="google-plus"><i class="bx bxl-skype"></i></a> -->
             <a href="https://www.linkedin.com/school/education-pdpu" target="_blank" class="linkedin"><i
                 class="bx bxl-linkedin"></i></a>
           </div>
@@ -229,16 +212,16 @@
     </div>
   </footer><!-- End Footer -->
   <!--  Vendor JS Files -->
-  <script src="assets/vendor/purecounter/purecounter.js"></script>
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
-  <script src="assets/vendor/waypoints/noframework.waypoints.js"></script>
-  <script src="assets/vendor/php-email-form/validate.js"></script>
+  <script src="/assets/vendor/purecounter/purecounter.js"></script>
+  <script src="/assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/assets/vendor/glightbox/js/glightbox.min.js"></script>
+  <script src="/assets/vendor/isotope-layout/isotope.pkgd.min.js"></script>
+  <script src="/assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="/assets/vendor/waypoints/noframework.waypoints.js"></script>
+  <script src="/assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  <script src="/assets/js/main.js"></script>
 </body>
 
 </html>

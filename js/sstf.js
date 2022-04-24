@@ -12,9 +12,9 @@ alertList.forEach(function (alert) {
 
 document.getElementById("chart-image").classList.toggle("show-element");
 var ctx = document.getElementById("chart").getContext("2d");
-var requests = document.getElementById("requests");                         // these is the input values of the no. of request             
-var maxTrack = document.getElementById("max-track");                        // this is the input value for max value of total tracks
-var headPosition = document.getElementById("head");                         // this is the input value for head position
+var requests = document.getElementById("requests");
+var maxTrack = document.getElementById("max-track");
+var headPosition = document.getElementById("head");
 var tracks = document.getElementById("tracks");
 var run = document.getElementById("run");
 run.classList.toggle("disabled");
@@ -34,7 +34,7 @@ function sstf(trequests, headpos, n){
         var tr1=[];
         for(var i=0;i<n;i++){
             tr1[i]= Math.abs(tr[i]-headpos);
-        }                                                          
+        }
         var min = Math.min(...tr1);
         var index= tr1.indexOf(min);
         headpos=tr[index];
@@ -45,19 +45,19 @@ function sstf(trequests, headpos, n){
     console.log(requestorder);
     return requestorder;
 }
+
+
 // FUCNTION TO CALCULATE SEEK OPERATIONS
-// LOGIC TO FIND SEEK TIME
-//Time Complexity for function seekOperations will be O(requestorder.length)
+
 function seekOperations(requestorder, headpos){
     var seektime = 0 ;
-    seektime += Math.abs(headpos - requestorder[0]);                 // first seek time
-    for(var i=0;i<requestorder.length-1;i++){   
-        seektime += Math.abs(requestorder[i+1] - requestorder[i]);   //seek time for all other requests
-    }                                                                
+    seektime += Math.abs(headpos - requestorder[0]);
+    for(var i=0;i<requestorder.length-1;i++){
+        seektime += Math.abs(requestorder[i+1] - requestorder[i]);  
+    }
     return seektime;
 }
 
-// *********************************************************
 //NEW FUNCTION TO BE ADDED IN OTHER JS FILES 
 //Time Complexity for function seekOperations will be O(requestorder.length)
 function seekOperationsCalculations(requestorder, headpos){
@@ -65,7 +65,7 @@ function seekOperationsCalculations(requestorder, headpos){
     for(let i=0; i<requestorder.length; i++){
         if(i===0){
             calc += '|'+headpos+'-'+requestorder[i]+'|';
-        }                                                                   //Time Complexity will be O(n)
+        }
         else{
             calc += ' + '+'|'+requestorder[i-1]+'-'+requestorder[i]+'|';
         }
@@ -76,10 +76,6 @@ function seekOperationsCalculations(requestorder, headpos){
 // FUNCTION EXECUTED ON RUN
 
 function execute() {
-
-    // Part to be added in other js files 
-    
-    //----------------------------------------------------
 
     document.getElementById("alert-wrapper").innerHTML = ``;
     document.getElementById("chart-image").style.display = "flex";
@@ -174,17 +170,6 @@ function execute() {
 
     if (allOk) {
         run.classList.toggle("disabled");
-
-        //TO DISPLAY THE DOWNLOAD BUTTON ON WEBPAGE AFTER THE RUN BUTTON IS CLICKED
-        // if(!fisrtTime){
-        //     var downloadButton = document.createElement("a");
-        //     downloadButton.id = "url"; downloadButton.download="SSTF.jpeg"; 
-        //     downloadButton.className="btn btn-dark last_button"; downloadButton.style.margin = "20px";
-        //     var text = document.createTextNode("Download");
-        //     downloadButton.append(text);
-        //     var controls = document.getElementById("controls"); controls.append(downloadButton);
-        //     fisrtTime = true;
-        // }
 
         head = Number(headPosition.value);
         xrange = Number(maxTrack.value);
@@ -541,3 +526,25 @@ function execute() {
 }
 run.addEventListener("click", execute);
 
+window.addEventListener('wheel', (e) => {
+    if (e.deltaY > 0) {
+        document.getElementsByClassName('navbar')[0].classList.add('animate__slideOutUp');
+        setTimeout(() => {
+            document.getElementsByClassName('navbar')[0].style.display = 'none';
+
+            document.getElementsByClassName('navbar')[0].classList.remove('animate__slideOutUp');
+        }, 100);
+    }
+    else {
+        if (document.getElementsByClassName('navbar')[0].style.display === 'none') {
+            document.getElementsByClassName('navbar')[0].classList.add('animate__slideInDown');
+            setTimeout(() => {
+                document.getElementsByClassName('navbar')[0].style.display = 'block';
+            }, 50);
+            setTimeout(() => {
+                document.getElementsByClassName('navbar')[0].classList.remove('animate__slideInDown');
+            }, 500);
+        }
+
+    }
+}); 
