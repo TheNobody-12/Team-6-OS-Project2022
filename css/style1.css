@@ -720,7 +720,7 @@ h1, h2, h3, h4, h5, h6 {
 
 #button .btn-container .btn {
   position: absolute;
-  top: 100%;
+  top: auto;
   left: 50%;
   transform: translate(-50%, -50%);
   -ms-transform: translate(-50%, -50%);
