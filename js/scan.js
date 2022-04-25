@@ -1,17 +1,22 @@
+
 var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'));
-var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {return new bootstrap.Popover(popoverTriggerEl)});
+var popoverList = popoverTriggerList.map(function (popoverTriggerEl) {
+    return new bootstrap.Popover(popoverTriggerEl)
+});
 
 var alertList = document.querySelectorAll('.alert')
-alertList.forEach(function (alert) {new bootstrap.Alert(alert)});
+alertList.forEach(function (alert) {
+    new bootstrap.Alert(alert)
+});
 
 // GETTING ALL VARIABLES AND INPUTS
 
 document.getElementById("chart-image").classList.toggle("show-element");
 var ctx = document.getElementById("chart").getContext("2d");
-var requests = document.getElementById("requests");                         // these is the input values of the no. of request             
-var maxTrack = document.getElementById("max-track");                        // this is the input value for max value of total tracks
-var headPosition = document.getElementById("head");                         // this is the input value for head position
-var tracks = document.getElementById("tracks");'0'
+var requests = document.getElementById("requests");
+var maxTrack = document.getElementById("max-track");
+var headPosition = document.getElementById("head");
+var tracks = document.getElementById("tracks");
 var run = document.getElementById("run");
 run.classList.toggle("disabled");
 var dir = document.getElementById("direction");
@@ -22,14 +27,13 @@ var algoChart = new Chart(ctx, {});
 var trackRequests;
 
 
-
 //FUNCITON THAT RETURNS THE SCAN ARRAY
-//time complexity of scan function => O(yrange)
+
 function scan(trequests, headpos, direction, max){
     let tr = trequests; 
     var requestorder = [];
     let i = 0;
-     
+    
     if(tr.indexOf(headpos)!==-1){
         tr.splice(tr.indexOf(headpos), 1);
         yrange -=1;
@@ -40,7 +44,9 @@ function scan(trequests, headpos, direction, max){
             tr.push(max);
             yrange+=1;
         }
-        tr.sort(function(b,c) {  return b - c  });
+        tr.sort(function(b,c) {
+            return b - c
+        });
 
         let startindex;
         for(i=0; i<yrange; i++){
@@ -49,20 +55,22 @@ function scan(trequests, headpos, direction, max){
                 break;
             }
         }
-        for(i=startindex; i<yrange; i++)
+        for(i=startindex; i<yrange; i++){
             requestorder.push(tr[i]);
-        
-        for(i=startindex-1; i>-1; i--)
+        }
+        for(i=startindex-1; i>-1; i--){
             requestorder.push(tr[i]);
-        
+        }
     }
     else if(direction==="left"){
         if(tr.indexOf(0)===-1){
             tr.push(0);
             yrange+=1;
         }
-        tr.sort(function(a,b) { return a - b });
-        
+        tr.sort(function(b,c) {
+            return b - c
+        });
+
         let startindex;
         for(i=0; i<yrange; i++){
             if(tr[i]>headpos){
@@ -70,43 +78,41 @@ function scan(trequests, headpos, direction, max){
                 break;
             }
         }
-        for(i=startindex; i>-1; i--)
+        for(i=startindex; i>-1; i--){
             requestorder.push(tr[i]);
-        
-        for(i=startindex+1; i<yrange; i++)
+        }
+        for(i=startindex+1; i<yrange; i++){
             requestorder.push(tr[i]);
+        }
     }
     return requestorder;
 }
 
 // FUCNTION TO CALCULATE SEEK OPERATIONS
-// LOGIC TO FIND SEEK TIME
-//Time Complexity for function seekOperations will be O(requestorder.length)
+
 function seekOperations(requestorder, headpos){
     var seektime = 0 ;
-    seektime += Math.abs(headpos - requestorder[0]);                    // first seek time
-    for(var i=0;i<requestorder.length-1;i++)                            //seek time for all other requests                                                  
+    seektime += Math.abs(headpos - requestorder[0]);
+    for(var i=0;i<requestorder.length-1;i++){
         seektime += Math.abs(requestorder[i+1] - requestorder[i]);  
+    }
     return seektime;
 }
-// *********************************************************
-//NEW FUNCTION TO BE ADDED IN OTHER JS FILES 
-//Time Complexity for function seekOperations will be O(requestorder.length)
+
 function seekOperationsCalculations(requestorder, headpos){
     var calc = '';
     for(let i=0; i<requestorder.length; i++){
-        if(i===0)
+        if(i===0){
             calc += '|'+headpos+'-'+requestorder[i]+'|';
-        else
+        }
+        else{
             calc += ' + '+'|'+requestorder[i-1]+'-'+requestorder[i]+'|';
+        }
     }
     return calc;
 }
-// FUNCTION EXECUTED ON RUN
+
 function execute() {
-// Part to be added in other js files 
-    
-    //----------------------------------------------------
 
     document.getElementById("alert-wrapper").innerHTML = ``;
     document.getElementById("chart-image").style.display = "flex";
@@ -114,7 +120,24 @@ function execute() {
 
     let allOk = true;
     var str = '';
-    // Max Tracks cannot be left blank 
+    if (requests.value === '') {
+        str = 'Number of requests cannot be left blank!';
+        document.getElementById("alert-wrapper").innerHTML = `
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 15px;">
+            <strong>Warning!</strong> ${str}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`;
+        allOk = false;
+    }
+    if (Number(requests.value) <= 0 && allOk) {
+        str = 'The number of request should be greater than 0!';
+        document.getElementById("alert-wrapper").innerHTML = `
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 15px;">
+            <strong>Warning!</strong> ${str}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`;
+        allOk = false;
+    }
     if (maxTrack.value === '' && allOk) {
         str = 'Maximum number of tracks cannot be left blank!';
         document.getElementById("alert-wrapper").innerHTML = `
@@ -124,7 +147,6 @@ function execute() {
         </div>`;
         allOk = false;
     }
-    //Max Tracks must be greater than zero 
     if (Number(maxTrack.value) <= 0 && allOk) {
         str = 'Maximum number of tracks should be greater than 0!';
         document.getElementById("alert-wrapper").innerHTML = `
@@ -134,7 +156,6 @@ function execute() {
         </div>`;
         allOk = false;
     }
-    //Head Position cannot be left blank
     if (headPosition.value === '' && allOk) {
         str = 'The starting head position needs to be mentioned! It cannot be left blank.'
         document.getElementById("alert-wrapper").innerHTML = `
@@ -144,7 +165,6 @@ function execute() {
         </div>`;
         allOk = false;
     }
-    // The Starting Head Position must lie between zero to max tracks
     if ((Number(headPosition.value) < 0 || Number(headPosition.value) > Number(maxTrack.value)) && allOk) {
         str = 'The starting head position of must lie between 0 and maximum track number.';
         document.getElementById("alert-wrapper").innerHTML = `
@@ -156,10 +176,12 @@ function execute() {
     }
 
     trackRequests = [];
-    if ((tracks.value.split('')).indexOf(',') === -1) 
+    if ((tracks.value.split('')).indexOf(',') === -1) {
         trackRequests = (tracks.value.split(' ')).map(Number);
-    else 
+    }
+    else {
         trackRequests = (tracks.value.split(',')).map(Number);
+    }
     
     trackRequests.forEach((x) => {
         if (x < 0 || x > Number(maxTrack.value) && allOk) {
@@ -173,9 +195,19 @@ function execute() {
         }
     });
 
+    if(trackRequests.length != Number(requests.value) && allOk){
+        str = 'Please make sure that the number of track requests in the array match the total number of requests.';
+        document.getElementById("alert-wrapper").innerHTML = `
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 15px;">
+            <strong>Warning!</strong> ${str}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`;
+        allOk = false;
+    }
 
     if (allOk) {
         run.classList.toggle("disabled");
+    
         head = Number(headPosition.value);
         xrange = Number(maxTrack.value);
 
@@ -184,10 +216,12 @@ function execute() {
         yrange = Number(trackRequests.length);
         trackRequests = scan(trackRequests, head, String(dir.value), xrange);
         yrange = Number(trackRequests.length);
-        for (var i = 0; i <= xrange; i++) 
+        for (var i = 0; i <= xrange; i++) {
             xlabel[i] = i;
-        for (i = 0; i <= yrange; i++) 
+        }
+        for (i = 0; i <= yrange; i++) {
             ylabel[i] = i;
+        }
 
         // FOR HIDING THE IMAGE AND DISPLAYING THE IMAGE
         document.getElementById("chart-image").style.display = "none";
@@ -242,6 +276,8 @@ function execute() {
                 var doc = new jsPDF('p', 'mm', 'a4');
                 doc.setFontSize(25);
                 doc.setFont('times', 'bold', '100');
+
+
                 doc.text("SCAN Algorithm", (doc.internal.pageSize.width/2), 18, 'center');
                 doc.line(0,30,doc.internal.pageSize.width,30,'S');
 
@@ -254,15 +290,22 @@ function execute() {
                 doc.text('Total number of tracks: '+ maxTrack.value, 20, 58);
                 doc.text('Initial head position: '+ headPosition.value, 20, 66);
                 var tReq;
-                if ((tracks.value.split('')).indexOf(',') === -1) 
-                      tReq = (tracks.value.split(' ')).map(Number);
-                else  tReq = (tracks.value.split(',')).map(Number); 
+                if ((tracks.value.split('')).indexOf(',') === -1) {
+                    tReq = (tracks.value.split(' ')).map(Number);
+                }
+                else {
+                    tReq = (tracks.value.split(',')).map(Number);
+                }
 
                 doc.text('Track requests: '+ tReq.join(', '), 20, 74);
                 tReq='';
                 for(let i=0; i<trackRequests.length; i++){
-                    if(i===0) tReq += String(trackRequests[i]);
-                    else tReq += ', '+String(trackRequests[i]); 
+                    if(i===0){
+                        tReq += String(trackRequests[i]);
+                    }
+                    else{
+                        tReq += ', '+String(trackRequests[i]);
+                    }
                 }
                 doc.setFont('Times', 'bold');
                 doc.text('Order in which tracks are serviced: '+ tReq, 20, 82);
@@ -298,10 +341,14 @@ function execute() {
                     xshift = (doc.internal.pageSize.width - ((imgw / factorh) - 10)) / 2;
                     doc.addImage(ImageURL, 'PNG', xshift, 158, (imgw / factorh) - 10, (imgh / factorh));
                 }
-                else { doc.addImage(ImageURL, 'PNG', 7, 158, (imgw) - 10, (imgh)); } 
+                else {
+                    doc.addImage(ImageURL, 'PNG', 7, 158, (imgw) - 10, (imgh));
+                }
+                
                 // FINALLY SAVING THE PDF 
                 doc.save('SCAN.pdf');
-            });}
+            });
+        }
 
         // THE CHART ITSELF
         algoChart.destroy();
@@ -323,7 +370,9 @@ function execute() {
                         pointHoverRadius: 6,
                         lineTension: 0.2,
                         data: []
-                    }]},
+                    }
+                ]
+            },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -358,7 +407,10 @@ function execute() {
                                     rnumber,
                                     tnumber
                                 ]
-                            );}}},
+                            );
+                        }
+                    }
+                },
                 animation: {
                     easing: 'easeInQuad',
                 },
@@ -380,7 +432,9 @@ function execute() {
                                 max: yrange+1,
                                 min: 0,
                                 stepSize: 1,
-                            },}],
+                            },
+                        }
+                    ],
                     xAxes: [
                         {
                             scaleLabel: {
@@ -399,7 +453,12 @@ function execute() {
                             },
                             display: true,
                             position: 'top',
-                        }]}}});
+                        }
+                    ]
+                }
+
+            }
+        });
         
         function displaySeekOp(){
             let temp = document.getElementById('temp');
@@ -494,7 +553,10 @@ function execute() {
                     done();
                 }, 1000
                 );
-            }}}}
+            }
+        }
+    }
+}
 run.addEventListener("click", execute);
 
 window.addEventListener('wheel', (e) => {
@@ -504,7 +566,8 @@ window.addEventListener('wheel', (e) => {
             document.getElementsByClassName('navbar')[0].style.display = 'none';
 
             document.getElementsByClassName('navbar')[0].classList.remove('animate__slideOutUp');
-        }, 100); }
+        }, 100);
+    }
     else {
         if (document.getElementsByClassName('navbar')[0].style.display === 'none') {
             document.getElementsByClassName('navbar')[0].classList.add('animate__slideInDown');
@@ -514,4 +577,7 @@ window.addEventListener('wheel', (e) => {
             setTimeout(() => {
                 document.getElementsByClassName('navbar')[0].classList.remove('animate__slideInDown');
             }, 500);
-        }}});
+        }
+
+    }
+});

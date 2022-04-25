@@ -26,8 +26,9 @@ var fisrtTime = true;
 var algoChart = new Chart(ctx, {});
 var trackRequests;
 
-//FUNCITON THAT RETURNS THE LOOK ARRAY
-//time complexity of LOOK function => O(yrange)
+
+//FUNCITON THAT RETURNS THE SCAN ARRAY
+
 function look(trequests, headpos, direction, max){
     let tr = trequests; 
     var requestorder = [];
@@ -37,12 +38,16 @@ function look(trequests, headpos, direction, max){
         tr.splice(tr.indexOf(headpos), 1);
         yrange -=1;
     }
-    tr.sort(function(b,c) {
-        return b - c
-    });
-
 
     if(direction==="right"){
+        if(tr.indexOf(max)===-1){
+            tr.push(max);
+            yrange+=1;
+        }
+        tr.sort(function(b,c) {
+            return b - c
+        });
+
         let startindex;
         for(i=0; i<yrange; i++){
             if(tr[i]>headpos){
@@ -58,6 +63,14 @@ function look(trequests, headpos, direction, max){
         }
     }
     else if(direction==="left"){
+        if(tr.indexOf(0)===-1){
+            tr.push(0);
+            yrange+=1;
+        }
+        tr.sort(function(b,c) {
+            return b - c
+        });
+
         let startindex;
         for(i=0; i<yrange; i++){
             if(tr[i]>headpos){
@@ -76,8 +89,7 @@ function look(trequests, headpos, direction, max){
 }
 
 // FUCNTION TO CALCULATE SEEK OPERATIONS
-// LOGIC TO FIND SEEK TIME
-//Time Complexity for function seekOperations will be O(requestorder.length)
+
 function seekOperations(requestorder, headpos){
     var seektime = 0 ;
     seektime += Math.abs(headpos - requestorder[0]);
@@ -86,9 +98,7 @@ function seekOperations(requestorder, headpos){
     }
     return seektime;
 }
-// *********************************************************
-//NEW FUNCTION TO BE ADDED IN OTHER JS FILES 
-//Time Complexity for function seekOperations will be O(requestorder.length)
+
 function seekOperationsCalculations(requestorder, headpos){
     var calc = '';
     for(let i=0; i<requestorder.length; i++){
@@ -101,18 +111,33 @@ function seekOperationsCalculations(requestorder, headpos){
     }
     return calc;
 }
-// FUNCTION EXECUTED ON RUN
+
 function execute() {
-// Part to be added in other js files 
-    
-    //----------------------------------------------------
+
     document.getElementById("alert-wrapper").innerHTML = ``;
     document.getElementById("chart-image").style.display = "flex";
     document.getElementById("chart-container").style.display = "none";
 
     let allOk = true;
     var str = '';
-    // Max Tracks cannot be left blank
+    if (requests.value === '') {
+        str = 'Number of requests cannot be left blank!';
+        document.getElementById("alert-wrapper").innerHTML = `
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 15px;">
+            <strong>Warning!</strong> ${str}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`;
+        allOk = false;
+    }
+    if (Number(requests.value) <= 0 && allOk) {
+        str = 'The number of request should be greater than 0!';
+        document.getElementById("alert-wrapper").innerHTML = `
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 15px;">
+            <strong>Warning!</strong> ${str}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`;
+        allOk = false;
+    }
     if (maxTrack.value === '' && allOk) {
         str = 'Maximum number of tracks cannot be left blank!';
         document.getElementById("alert-wrapper").innerHTML = `
@@ -122,7 +147,6 @@ function execute() {
         </div>`;
         allOk = false;
     }
-    //Max Tracks must be greater than zero
     if (Number(maxTrack.value) <= 0 && allOk) {
         str = 'Maximum number of tracks should be greater than 0!';
         document.getElementById("alert-wrapper").innerHTML = `
@@ -132,8 +156,7 @@ function execute() {
         </div>`;
         allOk = false;
     }
-    //Head Position cannot be left blank
-     if (headPosition.value === '' && allOk) {
+    if (headPosition.value === '' && allOk) {
         str = 'The starting head position needs to be mentioned! It cannot be left blank.'
         document.getElementById("alert-wrapper").innerHTML = `
         <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 15px;">
@@ -142,7 +165,6 @@ function execute() {
         </div>`;
         allOk = false;
     }
-     // The Starting Head Position must lie between zero to max tracks
     if ((Number(headPosition.value) < 0 || Number(headPosition.value) > Number(maxTrack.value)) && allOk) {
         str = 'The starting head position of must lie between 0 and maximum track number.';
         document.getElementById("alert-wrapper").innerHTML = `
@@ -160,7 +182,7 @@ function execute() {
     else {
         trackRequests = (tracks.value.split(',')).map(Number);
     }
-
+    
     trackRequests.forEach((x) => {
         if (x < 0 || x > Number(maxTrack.value) && allOk) {
             str = 'All the track requests must lie between 0 and maximum track number.';
@@ -173,9 +195,19 @@ function execute() {
         }
     });
 
+    if(trackRequests.length != Number(requests.value) && allOk){
+        str = 'Please make sure that the number of track requests in the array match the total number of requests.';
+        document.getElementById("alert-wrapper").innerHTML = `
+        <div class="alert alert-danger alert-dismissible fade show" role="alert" style="margin: 15px;">
+            <strong>Warning!</strong> ${str}
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>`;
+        allOk = false;
+    }
+
     if (allOk) {
         run.classList.toggle("disabled");
-
+    
         head = Number(headPosition.value);
         xrange = Number(maxTrack.value);
 
@@ -184,7 +216,6 @@ function execute() {
         yrange = Number(trackRequests.length);
         trackRequests = look(trackRequests, head, String(dir.value), xrange);
         yrange = Number(trackRequests.length);
-
         for (var i = 0; i <= xrange; i++) {
             xlabel[i] = i;
         }
@@ -203,7 +234,7 @@ function execute() {
             `<div id="progressBarContainer" class="progress animate__animated animate__backInUp">
                 <div id="progressBar" class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" style="width: 0%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
             </div>`;
-        
+    
         document.getElementById("dImageIcon").innerHTML = `<a id="url"></a>`;
         document.getElementById("dPDFIcon").innerHTML = `<a id="genPDF"></a>`; 
         document.getElementById("download-buttons").style.display = 'none';
@@ -276,7 +307,7 @@ function execute() {
                         tReq += ', '+String(trackRequests[i]);
                     }
                 }
-                doc.setFont('times', 'bold', '100');
+                doc.setFont('Times', 'bold');
                 doc.text('Order in which tracks are serviced: '+ tReq, 20, 82);
 
                 // SEEK OPERATIONS
@@ -339,7 +370,9 @@ function execute() {
                         pointHoverRadius: 6,
                         lineTension: 0.2,
                         data: []
-                    }]},
+                    }
+                ]
+            },
             options: {
                 responsive: true,
                 maintainAspectRatio: false,
@@ -357,7 +390,7 @@ function execute() {
                 legend: {
                     display: false,
                 },
-                tooltips: {
+                tooltips: { 
                     callbacks: {
 
                         title: function(tooltipItem, data){
@@ -374,7 +407,10 @@ function execute() {
                                     rnumber,
                                     tnumber
                                 ]
-                        );}}},
+                            );
+                        }
+                    }
+                },
                 animation: {
                     easing: 'easeInQuad',
                 },
@@ -396,7 +432,9 @@ function execute() {
                                 max: yrange+1,
                                 min: 0,
                                 stepSize: 1,
-                            },}],
+                            },
+                        }
+                    ],
                     xAxes: [
                         {
                             scaleLabel: {
@@ -415,7 +453,12 @@ function execute() {
                             },
                             display: true,
                             position: 'top',
-                        }]}}});
+                        }
+                    ]
+                }
+
+            }
+        });
         
         function displaySeekOp(){
             let temp = document.getElementById('temp');
@@ -463,13 +506,13 @@ function execute() {
             // NEW CODE TO BE ADDED IN OTHER JS FILES 
             var pdfButton = document.createElement("button");
             pdfButton.type = 'button'; pdfButton.className = 'pdfButton btn btn-outline-dark animate__animated animate__backInUp';
-            pdfButton.style.padding = '0'; pdfButton.id = "genPDF"
+            pdfButton.style.padding = '0'; pdfButton.id="genPDF"
             pdfButton.innerHTML = `
                 <svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" fill="black" class="bi bi-file-earmark-arrow-down" viewBox="0 0 16 16" style="margin: 6px;">
                 <path d="M8.5 6.5a.5.5 0 0 0-1 0v3.793L6.354 9.146a.5.5 0 1 0-.708.708l2 2a.5.5 0 0 0 .708 0l2-2a.5.5 0 0 0-.708-.708L8.5 10.293V6.5z"/>
                 <path d="M14 14V4.5L9.5 0H4a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h8a2 2 0 0 0 2-2zM9.5 3A1.5 1.5 0 0 0 11 4.5h2V14a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1h5.5v2z"/>
                 </svg>`;
-            document.getElementById('dPDFIcon').append(pdfButton);
+            document.getElementById('dPDFIcon').append(pdfButton);            
             setTimeout(() => {
                 window.scrollTo(0,document.body.scrollHeight);
             }, 700);
@@ -509,5 +552,32 @@ function execute() {
                     displaySeekOp();
                     done();
                 }, 1000
-                );}}}}
+                );
+            }
+        }
+    }
+}
 run.addEventListener("click", execute);
+
+window.addEventListener('wheel', (e) => {
+    if (e.deltaY > 0) {
+        document.getElementsByClassName('navbar')[0].classList.add('animate__slideOutUp');
+        setTimeout(() => {
+            document.getElementsByClassName('navbar')[0].style.display = 'none';
+
+            document.getElementsByClassName('navbar')[0].classList.remove('animate__slideOutUp');
+        }, 100);
+    }
+    else {
+        if (document.getElementsByClassName('navbar')[0].style.display === 'none') {
+            document.getElementsByClassName('navbar')[0].classList.add('animate__slideInDown');
+            setTimeout(() => {
+                document.getElementsByClassName('navbar')[0].style.display = 'block';
+            }, 50);
+            setTimeout(() => {
+                document.getElementsByClassName('navbar')[0].classList.remove('animate__slideInDown');
+            }, 500);
+        }
+
+    }
+});
