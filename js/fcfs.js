@@ -17,7 +17,8 @@ alertList.forEach(function (alert) {
 // ------------------------------------------------------------------------
 
 // GETTING ALL VARIABLES AND INPUTS
-
+// Logic to find Seek time  
+// we use head position
 document.getElementById("chart-image").classList.toggle("show-element");
 var ctx = document.getElementById("chart").getContext("2d");
 var requests = document.getElementById("requests");  // these is the input values of the no. of request

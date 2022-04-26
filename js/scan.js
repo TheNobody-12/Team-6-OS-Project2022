@@ -28,6 +28,7 @@ var trackRequests;
 
 
 //FUNCITON THAT RETURNS THE SCAN ARRAY
+//time complexity of scan function => O(yrange)
 
 function scan(trequests, headpos, direction, max){
     let tr = trequests; 
@@ -89,6 +90,9 @@ function scan(trequests, headpos, direction, max){
 }
 
 // FUCNTION TO CALCULATE SEEK OPERATIONS
+// LOGIC TO FIND SEEK TIME
+//Time Complexity for function seekOperations will be O(requestorder.length)
+
 
 function seekOperations(requestorder, headpos){
     var seektime = 0 ;

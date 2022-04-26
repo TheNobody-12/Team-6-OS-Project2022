@@ -10,7 +10,6 @@ alertList.forEach(function (alert) {
 });
 
 // GETTING ALL VARIABLES AND INPUTS
-
 document.getElementById("chart-image").classList.toggle("show-element");
 var ctx = document.getElementById("chart").getContext("2d");
 var requests = document.getElementById("requests");
@@ -27,7 +26,9 @@ var algoChart = new Chart(ctx, {});
 var trackRequests;
 
 
-//FUNCITON THAT RETURNS THE SCAN ARRAY
+//FUNCITON THAT RETURNS THE LOOK ARRAY
+
+//time complexity of LOOK function => O(yrange)
 
 function look(trequests, headpos, direction, max){
     let tr = trequests; 
@@ -89,7 +90,8 @@ function look(trequests, headpos, direction, max){
 }
 
 // FUCNTION TO CALCULATE SEEK OPERATIONS
-
+// LOGIC TO FIND SEEK TIME
+//Time Complexity for function seekOperations will be O(requestorder.length)
 function seekOperations(requestorder, headpos){
     var seektime = 0 ;
     seektime += Math.abs(headpos - requestorder[0]);
